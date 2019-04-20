@@ -7,7 +7,7 @@ package algo.collection.list;
 public interface List<T> {
     /**
      * Add value to list
-     * @param value - value to be added into list
+     * @param value - value to be added to the end of the list
      */
     void add(T value);
 
