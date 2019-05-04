@@ -64,4 +64,16 @@ public class ArrayListTest {
         assertEquals(10, list.size());
     }
 
+    @Test
+    public void testReverse() {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            list.add(i);
+        }
+        List<Integer> reversed = list.reverse();
+        for (int i = 0; i < list.size(); i++) {
+            assertEquals(list.get(i), reversed.get(list.size() - i - 1));
+        }
+    }
+
 }

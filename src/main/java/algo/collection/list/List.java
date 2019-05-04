@@ -25,4 +25,6 @@ public interface List<T> {
     void put(int index, T value);
 
     int size();
+
+    List<T> reverse();
 }

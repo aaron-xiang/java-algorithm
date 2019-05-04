@@ -84,16 +84,55 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void insert(int index, T value) {
+        Node<T> node = new Node<T>(value);
 
+        if (size == 0) {
+            head = node;
+            tail = node;
+            size++;
+            return;
+        }
+
+        if (index == 0) {
+            node.next = head;
+            head = node;
+            size++;
+            return;
+        }
+
+        // step1. find the `node` at index-1
+        Node prevNode = getNodeAt(index-1);
+        node.next = prevNode.next;
+
+        // step2. set node.next equal to new node
+        prevNode.next = node;
+        size++;
     }
 
     @Override
     public void put(int index, T value) {
-
+        if (size == 0) {
+            throw new IllegalArgumentException("Invalid index for empty list: " + index);
+        }
+        Node<T> node = getNodeAt(index);
+        node.data = value;
     }
 
     @Override
     public int size() {
         return this.size;
+    }
+
+    @Override
+    public List<T> reverse() {
+        List<T> reversed = new LinkedList<>();
+        Node<T> cur = head;
+
+        while (cur != null) {
+            reversed.insert(0, cur.data);
+            cur = cur.next;
+        }
+
+        return reversed;
     }
 }

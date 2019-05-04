@@ -40,7 +40,7 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void insert(int index, T value) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Invalid index: " + index);
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Invalid index: " + index);
         if (size >= data.length) resize(data.length*2);
         int start = index;
         int end = size - 1;
@@ -60,6 +60,15 @@ public class ArrayList<T> implements List<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public List<T> reverse() {
+        List<T> reversed = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            reversed.insert(i, get(size-1-i));
+        }
+        return reversed;
     }
 
 
